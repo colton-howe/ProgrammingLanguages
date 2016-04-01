@@ -9,21 +9,17 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1,101); // Let the variable 'secret_number' be an immutable variable that is a random 
 	    													 //number between 1 and 100
+	let mut count = 1; //Counter interger.
 
     loop {
-	    print!("Please input your guess: "); //Print without new line
-
-	    let mut count = 1; //Counter interger.
-
 	    let mut guess = String::new(); //Let the variable 'guess' be a mutable variable and set it equal to a new String.
 
-	    io:stdin() //Get whatever the user types in
-	    	.read_line(&mut guess) //Read the line from the terminal and put it into our guess String, letting read_line know that guess is mutable
-	    	.expect("Failed to read line."); //If expect returns a 'panic!', then crash and print this statement.
+	    println!("Please input your guess: "); //Print without new line
+	    io::stdin().read_line(&mut guess).expect("Failed to read line.");
 
 	    let guess: u32 = match guess.trim().parse() { //Parse guess into an unsigned-32 bit integer. trim() removes leading and following white 
 	   												  //spaces and newlines.
-	    	Ok(num) => num //If it was a success, set guess to num.
+	    	Ok(num) => num, //If it was a success, set guess to num.
 	    	Err(_) => continue, //If it was an error, jump to the next loop.
 	    };
 
