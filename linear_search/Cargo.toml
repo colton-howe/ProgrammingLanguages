@@ -1,0 +1,5 @@
+[package]
+
+name = "rust-algorithms"
+version = "0.0.1"
+authors = ["Eduardo Urias <windkaiser@gmail.com>"]
