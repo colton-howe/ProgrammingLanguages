@@ -1,0 +1,6 @@
+[package]
+name = "DepthSearch"
+version = "0.1.0"
+authors = ["Colton Howe <colton.howe@uoit.net>"]
+
+[dependencies]
