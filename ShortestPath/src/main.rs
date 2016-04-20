@@ -29,7 +29,9 @@ fn shortest_path(tree: Vec<Node>, start_index: usize, end_index: usize) -> i32 {
 			}	
 		}
 		let index = unvisited.iter().position(|&x| x == current.num);
-		unvisited.remove(index.unwrap());
+		if index.is_some() {
+			unvisited.remove(index.unwrap());
+		}
 		let end = end_index as i32;
 		if !unvisited.contains(&end) {
 			done = true;
@@ -46,19 +48,26 @@ fn shortest_path(tree: Vec<Node>, start_index: usize, end_index: usize) -> i32 {
 			done = true;
 		}
 		count = count +1;
-		let temp = stack.pop().unwrap();
-		let next_index = *temp as usize;
-		current = &tree[next_index];
+		if !stack.is_empty(){
+			let temp = stack.pop().unwrap()-1;
+			let next_index = temp as usize;
+			current = &tree[next_index];
+		} else {
+			done = true;
+		}
 	} 
 	distance[end_index]
 }
 
 
 fn main(){
-	let node1 = Node { num: 1, connected: vec![2] };
+	let node1 = Node { num: 1, connected: vec![6,2] };
 	let node2 = Node { num: 2, connected: vec![3] };
-	let node3 = Node { num: 3, connected: vec![2] };
-	let tree = vec![node1, node2, node3];
-	let results = shortest_path(tree, 0, 2);
+	let node3 = Node { num: 3, connected: vec![4] };
+	let node4 = Node { num: 4, connected: vec![5] };
+	let node5 = Node { num: 5, connected: vec![6] };
+	let node6 = Node { num: 6, connected: vec![1] };
+	let tree = vec![node1, node2, node3, node4, node5, node6];
+	let results = shortest_path(tree, 0, 5);
 	println!("Shortest Path is of a distance: {}",results);
 }
